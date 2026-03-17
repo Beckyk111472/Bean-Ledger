@@ -14,139 +14,156 @@
   * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
   body { font-family: 'DM Sans', sans-serif; background: var(--foam); color: var(--text); overflow-x: hidden; }
 
-  /* Utilities */
+  /* ── Layout & Typography ── */
   .container { max-width: 1080px; margin: 0 auto; }
   section { padding: 100px 24px; }
+  .section-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--caramel); margin-bottom: 16px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(30px, 4vw, 48px); font-weight: 700; line-height: 1.15; color: var(--espresso); margin-bottom: 20px; }
+  .section-body { font-size: 17px; color: var(--muted); line-height: 1.75; max-width: 600px; }
+
+  /* ── Components ── */
   .btn-primary { background: var(--gold); color: var(--espresso); font-size: 15px; font-weight: 600; padding: 16px 36px; border-radius: 4px; text-decoration: none; display: inline-block; transition: 0.2s; border: none; cursor: pointer; }
   .btn-primary:hover { background: #d9a04a; transform: translateY(-1px); }
   .btn-outline { background: transparent; color: var(--latte); font-size: 15px; font-weight: 500; padding: 16px 36px; border-radius: 4px; text-decoration: none; border: 1px solid rgba(212,184,150,0.35); display: inline-block; transition: 0.2s; }
   .btn-outline:hover { border-color: var(--latte); color: var(--white); }
 
-  /* Nav */
+  /* ── Nav ── */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(28,15,10,0.96); backdrop-filter: blur(8px); padding: 12px 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(200,145,58,0.2); }
-  .logo-area { display: flex; align-items: center; gap: 12px; }
-  .logo-placeholder { height: 40px; width: 40px; background: var(--gold); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--espresso); font-size: 12px; }
 
-  /* Hero */
+  /* ── Hero ── */
   .hero { background: var(--espresso); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px; position: relative; }
-  .hero-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(200,145,58,0.4); padding: 6px 18px; border-radius: 40px; margin-bottom: 32px; }
   .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px, 7vw, 82px); font-weight: 900; color: var(--white); line-height: 1.05; max-width: 820px; margin-bottom: 12px; }
   .hero h1 em { color: var(--gold); font-style: italic; }
   .hero-sub { font-size: clamp(16px, 2.2vw, 20px); color: var(--latte); font-weight: 300; max-width: 560px; line-height: 1.7; margin-bottom: 48px; }
 
-  /* Grid Layouts (Stats, Cards, Pricing) */
-  .stats { background: var(--roast); padding: 28px 24px; display: flex; justify-content: center; flex-wrap: wrap; }
-  .stat { text-align: center; padding: 12px 40px; border-right: 1px solid rgba(212,184,150,0.2); }
-  .stat:last-child { border-right: none; }
-  .stat-num { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--gold); }
-  .stat-label { font-size: 12px; color: var(--latte); text-transform: uppercase; }
+  /* ── Multi-Location Boxes (From Image) ── */
+  .multi-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(212,184,150,0.15); border-radius: 4px; padding: 32px; margin-top: 32px; display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+  .multi-box h3 { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--white); margin-bottom: 8px; }
+  .multi-box p { font-size: 14px; color: var(--latte); line-height: 1.6; flex: 1; min-width: 250px; }
+  .dtag { background: rgba(200,145,58,0.1); border: 1px solid rgba(200,145,58,0.3); color: var(--gold); font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 4px; white-space: nowrap; }
 
-  .parts-grid, .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 56px; }
-  .part-card, .price-card { background: var(--white); border-radius: 4px; padding: 36px 32px; border: 1px solid rgba(160,98,42,0.12); position: relative; }
-  .part-num { font-family: 'Playfair Display', serif; font-size: 52px; color: rgba(200,145,58,0.15); line-height: 1; }
-  .part-title { font-family: 'Playfair Display', serif; font-size: 22px; margin: 16px 0; }
-  .part-items { list-style: none; font-size: 14px; color: var(--muted); }
-  .part-items li { padding: 8px 0; border-bottom: 1px solid rgba(160,98,42,0.08); display: flex; gap: 10px; }
-
-  /* Pricing Specifics */
+  /* ── Pricing & Terms ── */
   .pricing { background: var(--espresso); color: var(--white); }
-  .pricing .section-title { color: var(--white); }
-  .price-card { background: rgba(255,255,255,0.05); border-color: rgba(212,184,150,0.15); }
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 56px; }
+  .price-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(212,184,150,0.15); border-radius: 4px; padding: 40px 32px; position: relative; }
   .price-card.featured { background: var(--white); color: var(--espresso); border: 2px solid var(--gold); }
-  .price-amount { font-family: 'Playfair Display', serif; font-size: 48px; margin-bottom: 12px; }
-  .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--espresso); padding: 4px 16px; border-radius: 40px; font-size: 11px; font-weight: 700; }
+  .price-amount { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; margin-bottom: 8px; }
+  
+  .terms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 48px; }
+  .term-card { background: var(--white); border: 1px solid rgba(160,98,42,0.1); padding: 28px; border-radius: 4px; }
+  .step-num { background: var(--gold); color: var(--white); width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; margin-right: 10px; }
 
-  /* FAQ & Footer */
-  .faq { background: var(--foam); }
+  /* ── Testimonials & FAQ ── */
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 48px; }
+  .testi-card { background: var(--cream); padding: 32px; border-left: 3px solid var(--gold); }
+  .faq-list { max-width: 720px; margin-top: 48px; }
   .faq-item { border-bottom: 1px solid rgba(160,98,42,0.12); padding: 24px 0; }
-  .faq-q { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 8px; }
-  .footer-cta { background: var(--roast); text-align: center; color: var(--white); }
-  footer { background: var(--espresso); padding: 40px 24px; text-align: center; color: var(--latte); font-size: 12px; }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo-area">
-    <div class="logo-placeholder">B&L</div>
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div style="height: 40px; width: 40px; background: var(--gold); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--espresso);">B&L</div>
     <span style="font-size: 14px; font-weight: 600; color: var(--latte); letter-spacing: 0.06em;">BEAN <span style="color: var(--gold);">&amp;</span> LEDGER</span>
   </div>
   <a href="#pricing" class="btn-primary" style="padding: 10px 24px; font-size: 13px;">See Pricing</a>
 </nav>
 
-<section class="hero" id="home">
-  <div class="hero-tag">☕ The Complete Coffee Shop HR Solution</div>
+<section class="hero">
+  <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(200,145,58,0.4); padding: 6px 18px; border-radius: 40px; margin-bottom: 32px;">☕ The Complete Coffee Shop HR Solution</div>
   <h1>Run Your Café<br>Like a <em>Pro</em></h1>
-  <p class="hero-sub">The only HR binder built specifically for coffee shops—covering onboarding, policies, and handbooks across all 50 states.</p>
-  <div class="hero-cta">
+  <p class="hero-sub">The only HR binder built specifically for coffee shops and cafés — covering onboarding, HR policies, and employee handbooks across all 50 states.</p>
+  <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
     <a href="#pricing" class="btn-primary">See Pricing & Packages</a>
     <a href="#inside" class="btn-outline">What's Inside?</a>
   </div>
 </section>
 
-<div class="stats">
-  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Sections</div></div>
-  <div class="stat"><div class="stat-num">50</div><div class="stat-label">States</div></div>
-  <div class="stat"><div class="stat-num">30+</div><div class="stat-label">Policies</div></div>
-</div>
-
-<section id="inside">
+<section class="pricing" id="pricing">
   <div class="container">
-    <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 20px;">Everything a café owner needs.</h2>
-    <div class="parts-grid">
-      <div class="part-card">
-        <div class="part-num">01</div>
-        <div class="part-title">Onboarding</div>
-        <ul class="part-items">
-          <li>New hire checklists</li>
-          <li>Direct deposit forms</li>
-          <li>Food handler trackers</li>
-        </ul>
+    <div class="section-tag">Pricing & Packages</div>
+    <h2 class="section-title" style="color: white;">Choose your package</h2>
+    
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-amount">$49.99</div>
+        <h3>Digital Download</h3>
+        <p style="font-size: 14px; margin: 20px 0; color: var(--latte);">Instant PDF download. Print and use immediately.</p>
+        <a href="YOUR_LINK_HERE" class="btn-primary" style="width: 100%; text-align: center;">Download Now</a>
       </div>
-      <div class="part-card">
-        <div class="part-num">02</div>
-        <div class="part-title">Compliance</div>
-        <ul class="part-items">
-          <li>50-state wage tables</li>
-          <li>FLSA Tip pool guidance</li>
-          <li>Harassment policies</li>
-        </ul>
+
+      <div class="price-card featured">
+        <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--espresso); font-size: 11px; font-weight: 700; padding: 4px 16px; border-radius: 40px;">MOST POPULAR</div>
+        <div class="price-amount">$199</div>
+        <h3>Customized Binder</h3>
+        <p style="font-size: 14px; margin: 20px 0;">Branded with your logo and state-specific laws. Shipped to you.</p>
+        <a href="YOUR_LINK_HERE" class="btn-primary" style="width: 100%; text-align: center;">Get Custom Binder</a>
       </div>
-      <div class="part-card">
-        <div class="part-num">03</div>
-        <div class="part-title">Handbook</div>
-        <ul class="part-items">
-          <li>Mission & Values</li>
-          <li>Cash handling procedures</li>
-          <li>Closing checklists</li>
-        </ul>
+
+      <div class="price-card">
+        <div class="price-amount">$449.99</div>
+        <h3>Premium Package</h3>
+        <p style="font-size: 14px; margin: 20px 0; color: var(--latte);">Full-service onboarding + 5 years of policy updates.</p>
+        <a href="YOUR_LINK_HERE" class="btn-outline" style="width: 100%; text-align: center; color: var(--gold);">Get Premium</a>
+      </div>
+    </div>
+
+    <div class="multi-box">
+      <div style="flex: 1;">
+        <h3>Opening a Second Location? Save Big.</h3>
+        <p>We offer deep discounts on additional customized binders. Most owners need one binder per location — and we reward you for doing it right.</p>
+      </div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <div class="dtag">2nd binder — 30% off</div>
+        <div class="dtag">3rd binder — 40% off</div>
+        <div class="dtag">4+ binders — 50% off</div>
+      </div>
+    </div>
+
+    <div class="multi-box" style="margin-top: 16px;">
+      <div style="flex: 1;">
+        <h3>Policy Updates — Always Affordable</h3>
+        <p>Laws change. Your binder shouldn't fall behind. Premium owners get 1 free update. Everyone can add updates at a low flat rate.</p>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <div class="dtag">Reprint + Ship — $47</div>
+        <div class="dtag">Digital PDF only — $24</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="pricing" id="pricing">
+<section id="terms" style="background: var(--cream);">
   <div class="container">
-    <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 40px;">Choose Your Package</h2>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <div style="font-size: 12px; margin-bottom: 10px;">DIGITAL DOWNLOAD</div>
-        <div class="price-amount">$49.99</div>
-        <p style="font-size: 14px; margin-bottom: 20px;">Instant PDF download. Print and bind yourself.</p>
-        <a href="INSERT_LINK_HERE" class="btn-primary" style="width:100%; text-align:center;">Download Now</a>
+    <div class="section-tag">Payment Structure</div>
+    <h2 class="section-title">Simple, fair payment terms</h2>
+    <div class="terms-grid">
+      <div class="term-card">
+        <h4 style="margin-bottom: 15px;">Digital Download</h4>
+        <div style="font-size: 14px;"><span class="step-num">1</span>Pay once, download instantly.</div>
       </div>
-      <div class="price-card featured">
-        <div class="popular-badge">MOST POPULAR</div>
-        <div style="font-size: 12px; margin-bottom: 10px;">CUSTOM BINDER</div>
-        <div class="price-amount">$199</div>
-        <p style="font-size: 14px; margin-bottom: 20px;">Branded with your logo, state laws, and shipped to you.</p>
-        <a href="INSERT_LINK_HERE" class="btn-primary" style="width:100%; text-align:center;">Get Custom Binder</a>
+      <div class="term-card">
+        <h4 style="margin-bottom: 15px;">Customized Binder</h4>
+        <div style="font-size: 14px;"><span class="step-num">1</span>50% deposit to start.</div>
+        <div style="font-size: 14px; margin-top: 8px;"><span class="step-num">2</span>50% due on approval/shipping.</div>
       </div>
-      <div class="price-card">
-        <div style="font-size: 12px; margin-bottom: 10px;">PREMIUM</div>
-        <div class="price-amount">$449.99</div>
-        <p style="font-size: 14px; margin-bottom: 20px;">Walkthrough call + 5 years of free policy updates.</p>
-        <a href="INSERT_LINK_HERE" class="btn-outline" style="width:100%; text-align:center; color: var(--gold);">Get Premium</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-tag">What Café Owners Say</div>
+    <h2 class="section-title">Built for real café life</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p style="font-family: 'Playfair Display', serif; font-style: italic; margin-bottom: 15px;">"This binder saved me weeks of work and gave me total confidence hiring our first team."</p>
+        <p style="font-size: 13px; font-weight: 600;">Sarah M. · Portland, OR</p>
+      </div>
+      <div class="testi-card">
+        <p style="font-family: 'Playfair Display', serif; font-style: italic; margin-bottom: 15px;">"The tip pool guidance alone was worth the investment. It's so specific to our industry."</p>
+        <p style="font-size: 13px; font-weight: 600;">David K. · Austin, TX</p>
       </div>
     </div>
   </div>
@@ -154,21 +171,19 @@
 
 <section class="faq">
   <div class="container">
-    <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 30px;">FAQs</h2>
-    <div class="faq-item">
-      <div class="faq-q">Is this legal advice?</div>
-      <div class="faq-a">No. It's a professional HR template. We always recommend an attorney review for specific local compliance.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">How long does shipping take?</div>
-      <div class="faq-a">Customized binders typically ship within 3–5 business days of your approval.</div>
-    </div>
+    <div class="section-tag">FAQ</div>
+    <h2 class="section-title">Common Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Is this legal advice?</div>
+        <div class="faq-a">No. This is a professional HR template. We recommend an attorney review for your specific local compliance.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What does "customized" mean?</div>
+        <div class="faq-a">We add your logo, business name, and adjust state-specific policies (wages, leave laws) for your specific location.</div>
+      </div>
+      </div>
   </div>
-</section>
-
-<section class="footer-cta">
-  <h2>Ready to run your café with confidence?</h2>
-  <a href="#pricing" class="btn-primary" style="margin-top: 30px;">See All Packages</a>
 </section>
 
 <footer>
