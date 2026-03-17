@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Coffee Shop HR Binder — Complete HR Solution for Cafés</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --espresso: #1C0F0A; --roast: #5C3317; --caramel: #A0622A; --gold: #C8913A;
+    --latte: #D4B896; --cream: #FAF5EE; --foam: #FFF9F2; --white: #FFFFFF;
+    --text: #1C0F0A; --muted: #7A6555;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--foam); color: var(--text); overflow-x: hidden; }
+
+  /* Utilities */
+  .container { max-width: 1080px; margin: 0 auto; }
+  section { padding: 100px 24px; }
+  .btn-primary { background: var(--gold); color: var(--espresso); font-size: 15px; font-weight: 600; padding: 16px 36px; border-radius: 4px; text-decoration: none; display: inline-block; transition: 0.2s; border: none; cursor: pointer; }
+  .btn-primary:hover { background: #d9a04a; transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--latte); font-size: 15px; font-weight: 500; padding: 16px 36px; border-radius: 4px; text-decoration: none; border: 1px solid rgba(212,184,150,0.35); display: inline-block; transition: 0.2s; }
+  .btn-outline:hover { border-color: var(--latte); color: var(--white); }
+
+  /* Nav */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(28,15,10,0.96); backdrop-filter: blur(8px); padding: 12px 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(200,145,58,0.2); }
+  .logo-area { display: flex; align-items: center; gap: 12px; }
+  .logo-placeholder { height: 40px; width: 40px; background: var(--gold); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--espresso); font-size: 12px; }
+
+  /* Hero */
+  .hero { background: var(--espresso); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px; position: relative; }
+  .hero-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(200,145,58,0.4); padding: 6px 18px; border-radius: 40px; margin-bottom: 32px; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px, 7vw, 82px); font-weight: 900; color: var(--white); line-height: 1.05; max-width: 820px; margin-bottom: 12px; }
+  .hero h1 em { color: var(--gold); font-style: italic; }
+  .hero-sub { font-size: clamp(16px, 2.2vw, 20px); color: var(--latte); font-weight: 300; max-width: 560px; line-height: 1.7; margin-bottom: 48px; }
+
+  /* Grid Layouts (Stats, Cards, Pricing) */
+  .stats { background: var(--roast); padding: 28px 24px; display: flex; justify-content: center; flex-wrap: wrap; }
+  .stat { text-align: center; padding: 12px 40px; border-right: 1px solid rgba(212,184,150,0.2); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--gold); }
+  .stat-label { font-size: 12px; color: var(--latte); text-transform: uppercase; }
+
+  .parts-grid, .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 56px; }
+  .part-card, .price-card { background: var(--white); border-radius: 4px; padding: 36px 32px; border: 1px solid rgba(160,98,42,0.12); position: relative; }
+  .part-num { font-family: 'Playfair Display', serif; font-size: 52px; color: rgba(200,145,58,0.15); line-height: 1; }
+  .part-title { font-family: 'Playfair Display', serif; font-size: 22px; margin: 16px 0; }
+  .part-items { list-style: none; font-size: 14px; color: var(--muted); }
+  .part-items li { padding: 8px 0; border-bottom: 1px solid rgba(160,98,42,0.08); display: flex; gap: 10px; }
+
+  /* Pricing Specifics */
+  .pricing { background: var(--espresso); color: var(--white); }
+  .pricing .section-title { color: var(--white); }
+  .price-card { background: rgba(255,255,255,0.05); border-color: rgba(212,184,150,0.15); }
+  .price-card.featured { background: var(--white); color: var(--espresso); border: 2px solid var(--gold); }
+  .price-amount { font-family: 'Playfair Display', serif; font-size: 48px; margin-bottom: 12px; }
+  .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--espresso); padding: 4px 16px; border-radius: 40px; font-size: 11px; font-weight: 700; }
+
+  /* FAQ & Footer */
+  .faq { background: var(--foam); }
+  .faq-item { border-bottom: 1px solid rgba(160,98,42,0.12); padding: 24px 0; }
+  .faq-q { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 8px; }
+  .footer-cta { background: var(--roast); text-align: center; color: var(--white); }
+  footer { background: var(--espresso); padding: 40px 24px; text-align: center; color: var(--latte); font-size: 12px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo-area">
+    <div class="logo-placeholder">B&L</div>
+    <span style="font-size: 14px; font-weight: 600; color: var(--latte); letter-spacing: 0.06em;">BEAN <span style="color: var(--gold);">&amp;</span> LEDGER</span>
+  </div>
+  <a href="#pricing" class="btn-primary" style="padding: 10px 24px; font-size: 13px;">See Pricing</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-tag">☕ The Complete Coffee Shop HR Solution</div>
+  <h1>Run Your Café<br>Like a <em>Pro</em></h1>
+  <p class="hero-sub">The only HR binder built specifically for coffee shops—covering onboarding, policies, and handbooks across all 50 states.</p>
+  <div class="hero-cta">
+    <a href="#pricing" class="btn-primary">See Pricing & Packages</a>
+    <a href="#inside" class="btn-outline">What's Inside?</a>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Sections</div></div>
+  <div class="stat"><div class="stat-num">50</div><div class="stat-label">States</div></div>
+  <div class="stat"><div class="stat-num">30+</div><div class="stat-label">Policies</div></div>
+</div>
+
+<section id="inside">
+  <div class="container">
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 20px;">Everything a café owner needs.</h2>
+    <div class="parts-grid">
+      <div class="part-card">
+        <div class="part-num">01</div>
+        <div class="part-title">Onboarding</div>
+        <ul class="part-items">
+          <li>New hire checklists</li>
+          <li>Direct deposit forms</li>
+          <li>Food handler trackers</li>
+        </ul>
+      </div>
+      <div class="part-card">
+        <div class="part-num">02</div>
+        <div class="part-title">Compliance</div>
+        <ul class="part-items">
+          <li>50-state wage tables</li>
+          <li>FLSA Tip pool guidance</li>
+          <li>Harassment policies</li>
+        </ul>
+      </div>
+      <div class="part-card">
+        <div class="part-num">03</div>
+        <div class="part-title">Handbook</div>
+        <ul class="part-items">
+          <li>Mission & Values</li>
+          <li>Cash handling procedures</li>
+          <li>Closing checklists</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 40px;">Choose Your Package</h2>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div style="font-size: 12px; margin-bottom: 10px;">DIGITAL DOWNLOAD</div>
+        <div class="price-amount">$49.99</div>
+        <p style="font-size: 14px; margin-bottom: 20px;">Instant PDF download. Print and bind yourself.</p>
+        <a href="INSERT_LINK_HERE" class="btn-primary" style="width:100%; text-align:center;">Download Now</a>
+      </div>
+      <div class="price-card featured">
+        <div class="popular-badge">MOST POPULAR</div>
+        <div style="font-size: 12px; margin-bottom: 10px;">CUSTOM BINDER</div>
+        <div class="price-amount">$199</div>
+        <p style="font-size: 14px; margin-bottom: 20px;">Branded with your logo, state laws, and shipped to you.</p>
+        <a href="INSERT_LINK_HERE" class="btn-primary" style="width:100%; text-align:center;">Get Custom Binder</a>
+      </div>
+      <div class="price-card">
+        <div style="font-size: 12px; margin-bottom: 10px;">PREMIUM</div>
+        <div class="price-amount">$449.99</div>
+        <p style="font-size: 14px; margin-bottom: 20px;">Walkthrough call + 5 years of free policy updates.</p>
+        <a href="INSERT_LINK_HERE" class="btn-outline" style="width:100%; text-align:center; color: var(--gold);">Get Premium</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="container">
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 30px;">FAQs</h2>
+    <div class="faq-item">
+      <div class="faq-q">Is this legal advice?</div>
+      <div class="faq-a">No. It's a professional HR template. We always recommend an attorney review for specific local compliance.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How long does shipping take?</div>
+      <div class="faq-a">Customized binders typically ship within 3–5 business days of your approval.</div>
+    </div>
+  </div>
+</section>
+
+<section class="footer-cta">
+  <h2>Ready to run your café with confidence?</h2>
+  <a href="#pricing" class="btn-primary" style="margin-top: 30px;">See All Packages</a>
+</section>
+
+<footer>
+  <p><strong>BEAN & LEDGER</strong> · Coffee Shop HR Solutions</p>
+  <p>© 2026 Bean & Ledger. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
