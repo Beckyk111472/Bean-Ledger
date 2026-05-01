@@ -804,4 +804,21 @@
     });
   });
   function handleSubmit() {
-    if (!document.getE
+    const plan = document.querySelector('input[name="plan"]:checked');
+    const name = document.getElementById('name');
+    const email = document.getElementById('email');
+    const consent = document.getElementById('consent');
+
+    if (!name || !name.value.trim()) { alert('Please enter your name.'); return; }
+    if (!email || !email.value.trim()) { alert('Please enter your email address.'); return; }
+    if (!consent || !consent.checked) { alert('Please agree to the terms to continue.'); return; }
+
+    const promoLink = 'https://buy.stripe.com/6oUeVegi2cLY3JwdFF6Zy0d';
+    const regularLink = 'https://buy.stripe.com/6oU9AU0j47rE1BoeJJ6Zy0e';
+
+    const url = (plan && plan.value === 'monthly') ? regularLink : promoLink;
+    window.open(url, '_blank');
+  }
+</script>
+</body>
+</html>
